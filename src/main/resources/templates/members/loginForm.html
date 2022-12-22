@@ -191,24 +191,27 @@
       </div>
     </header>
     <div class="row">
-        <div class="col-md-4"><img class="img-fluid" src="https://img.seoul.co.kr/img/upload/2022/12/15/SSI_20221215201800_O2.jpg"></div>
+        <div class="col-md-4"><img class="img-fluid" src="https://sccdn.chosun.com/news/html/2020/12/28/2020122801002005700124701.jpg"></div>
         <div class="col-md-2"></div>
         <div class="col-md-6" >
             <div class="login-wrapper">
-                <h2>회원 가입</h2>
-                <form method="post" action="서버의url" id="login-form">
-                    <p style="margin: 0%;">이메일</p>
-                    <input type="text" name="userName" placeholder="Email">
-                    <p style="margin: 0%;">비밀번호</p>
-                    <input type="password" name="userPassword" placeholder="Password">
-                    <p style="margin: 0%;">비밀번호 확인</p>
-                    <input type="password" name="userPassword" placeholder="Password">
-                    <p style="margin: 0%;">이름</p>
-                    <input type="password" name="userPassword" placeholder="Password">
-                    <p style="margin: 0%;">휴대폰 번호</p>
-                    <input type="password" name="userPassword" placeholder="Password">
-                    <input type="submit" value="회원 가입">
+                <h2>Login</h2>
+                 <div th:if="${param.error}"  class="alert alert-danger" role="alert">
+        			 Invalid username and password
+    			 </div>
+                <form method="post" action="/loginSuccess" id="login-form">
+                    <input type="text" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
+<!--                     <label for="remember-check"> -->
+<!--                         <input type="checkbox" id="remember-check">아이디 저장하기 -->
+<!--                     </label> -->
+                    <input type="submit" value="로그인">                                    
                 </form>
+                <p>
+					<a class="btn btn-primary" th:href="@{/members/new}" role="button">회원 가입</a>
+				</p>
+                
+                
             </div>
         </div>
         <!-- <div class="col-md-4"></div> -->

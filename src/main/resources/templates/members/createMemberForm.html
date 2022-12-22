@@ -1,12 +1,15 @@
-
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
     <meta name="generator" content="Hugo 0.104.2">
+    
+    <meta name="_csrf" th:content="${_csrf?.token}">
+	<meta name="_csrf_header" th:content="${_csrf?.headerName}">
     <title>WeAreTheFutsal,WeAreTheWorld</title>
 
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/headers/">
@@ -172,7 +175,7 @@
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="/" class="">
-            <img src="img/wearethefutsal_logo.png" height="32">
+            <img src="/img/wearethefutsal_logo.png" height="32">
           </a>
 
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -191,41 +194,42 @@
       </div>
     </header>
     <div class="row">
-        <div class="col-md-4"><img class="img-fluid" src="https://sccdn.chosun.com/news/html/2020/12/28/2020122801002005700124701.jpg"></div>
+        <div class="col-md-4"><img class="img-fluid" src="https://img.seoul.co.kr/img/upload/2022/12/15/SSI_20221215201800_O2.jpg"></div>
         <div class="col-md-2"></div>
         <div class="col-md-6" >
             <div class="login-wrapper">
-                <h2>Login</h2>
-                <form method="post" action="서버의url" id="login-form">
-                    <input type="text" name="userName" placeholder="Email">
-                    <input type="password" name="userPassword" placeholder="Password">
-                    <label for="remember-check">
-                        <input type="checkbox" id="remember-check">아이디 저장하기
-                    </label>
-                    <input type="submit" value="로그인">                                    
+                <h2>회원 가입</h2>
+                <form method="post" role="form" th:object="${memberSaveRequestDTO}" action="/member/new" id="login-form" >
+                
+                    <label th:for="username">이름</label>
+                    <input type="text"  th:field="*{username}" placeholder="이름을 입력하세요.">
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Incorrect data</p>
+                
+                    <label th:for="email">이메일</label>
+			        <input type="email" th:field="*{email}" placeholder="이메일을 입력하세요.">
+			        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect data</p>
+		       
+			        <label th:for="password">비밀번호</label>
+			        <input type="password" th:field="*{password}" placeholder="비밀번호를 입력하세요.">
+			        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect data</p>
+                    
+                
+                    <button type="submit">회원가입</button>
+                    
                 </form>
-                <p>
-					<a class="btn btn-primary" th:href="@{/addUserForm}" role="button">회원 가입</a>
-				</p>
-                
-                
+               
+				
             </div>
         </div>
         <!-- <div class="col-md-4"></div> -->
        
     </div>
     
-    
-   
-    
-
-    
-
-
 
   </div>
   
 </main>
+
 
 
 
